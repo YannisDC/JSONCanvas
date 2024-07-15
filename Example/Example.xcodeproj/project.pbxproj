@@ -15,6 +15,11 @@
 		E00D14AD2C34460F00C29688 /* JSONCanvas in Frameworks */ = {isa = PBXBuildFile; productRef = E00D14AC2C34460F00C29688 /* JSONCanvas */; };
 		E00D14AF2C34464100C29688 /* CanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00D14AE2C34464100C29688 /* CanvasViewModel.swift */; };
 		E00D14B12C34464B00C29688 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00D14B02C34464B00C29688 /* CanvasView.swift */; };
+		E00D14B62C3477BC00C29688 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00D14B52C3477BC00C29688 /* Color+Extension.swift */; };
+		E00D14B82C3477DE00C29688 /* CGSize+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00D14B72C3477DE00C29688 /* CGSize+Extension.swift */; };
+		E00D14BA2C34782000C29688 /* CanvasDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00D14B92C34782000C29688 /* CanvasDocument.swift */; };
+		E00D14BC2C34788100C29688 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00D14BB2C34788100C29688 /* DocumentPicker.swift */; };
+		E00D14BF2C347C2C00C29688 /* CanvasLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00D14BE2C347C2C00C29688 /* CanvasLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +31,11 @@
 		E00D14A12C34455E00C29688 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E00D14AE2C34464100C29688 /* CanvasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewModel.swift; sourceTree = "<group>"; };
 		E00D14B02C34464B00C29688 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+		E00D14B52C3477BC00C29688 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		E00D14B72C3477DE00C29688 /* CGSize+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Extension.swift"; sourceTree = "<group>"; };
+		E00D14B92C34782000C29688 /* CanvasDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasDocument.swift; sourceTree = "<group>"; };
+		E00D14BB2C34788100C29688 /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
+		E00D14BE2C347C2C00C29688 /* CanvasLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +73,8 @@
 				E00D14992C34455D00C29688 /* ExampleApp.swift */,
 				E00D14AE2C34464100C29688 /* CanvasViewModel.swift */,
 				E00D14B02C34464B00C29688 /* CanvasView.swift */,
+				E00D14BD2C34794400C29688 /* File Handling */,
+				E00D14B42C34779A00C29688 /* Extensions */,
 				E00D149B2C34455D00C29688 /* ContentView.swift */,
 				E00D149D2C34455E00C29688 /* Assets.xcassets */,
 				E00D149F2C34455E00C29688 /* Example.entitlements */,
@@ -77,6 +89,25 @@
 				E00D14A12C34455E00C29688 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E00D14B42C34779A00C29688 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E00D14B52C3477BC00C29688 /* Color+Extension.swift */,
+				E00D14B72C3477DE00C29688 /* CGSize+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E00D14BD2C34794400C29688 /* File Handling */ = {
+			isa = PBXGroup;
+			children = (
+				E00D14B92C34782000C29688 /* CanvasDocument.swift */,
+				E00D14BE2C347C2C00C29688 /* CanvasLoader.swift */,
+				E00D14BB2C34788100C29688 /* DocumentPicker.swift */,
+			);
+			path = "File Handling";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,8 +188,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E00D149C2C34455D00C29688 /* ContentView.swift in Sources */,
+				E00D14B62C3477BC00C29688 /* Color+Extension.swift in Sources */,
+				E00D14B82C3477DE00C29688 /* CGSize+Extension.swift in Sources */,
 				E00D149A2C34455D00C29688 /* ExampleApp.swift in Sources */,
+				E00D14BC2C34788100C29688 /* DocumentPicker.swift in Sources */,
+				E00D14BA2C34782000C29688 /* CanvasDocument.swift in Sources */,
 				E00D14B12C34464B00C29688 /* CanvasView.swift in Sources */,
+				E00D14BF2C347C2C00C29688 /* CanvasLoader.swift in Sources */,
 				E00D14AF2C34464100C29688 /* CanvasViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

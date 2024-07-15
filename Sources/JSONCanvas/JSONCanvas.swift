@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import UIKit
 
 public struct JSONCanvas: Codable {
-    public var nodes: [Node]?
+    public var nodes: [CanvasNode]?
     public var edges: [CanvasEdge]?
     
-    public init(nodes: [Node]? = nil, edges: [CanvasEdge]? = nil) {
+    public init(nodes: [CanvasNode]? = nil, edges: [CanvasEdge]? = nil) {
         self.nodes = nodes
         self.edges = edges
     }
@@ -24,7 +25,7 @@ public enum NodeType: String, Codable {
     case group
 }
 
-public struct Node: Codable {
+public struct CanvasNode: Codable {
     public let id: String
     public let type: NodeType
     public var x: Int
@@ -48,9 +49,22 @@ public struct Node: Codable {
     public let background: String?
     public let backgroundStyle: BackgroundStyle?
     
-    public init(id: String, type: NodeType, x: Int, y: Int, width: Int, height: Int, color: CanvasColor? = nil,
-                text: String? = nil, file: String? = nil, subpath: String? = nil, url: String? = nil,
-                label: String? = nil, background: String? = nil, backgroundStyle: BackgroundStyle? = nil) {
+    public init(
+        id: String,
+        type: NodeType,
+        x: Int, 
+        y: Int,
+        width: Int, 
+        height: Int,
+        color: CanvasColor? = nil,
+        text: String? = nil,
+        file: String? = nil,
+        subpath: String? = nil,
+        url: String? = nil,
+        label: String? = nil,
+        background: String? = nil,
+        backgroundStyle: BackgroundStyle? = nil
+    ) {
         self.id = id
         self.type = type
         self.x = x
@@ -121,7 +135,16 @@ public enum CanvasColor: Codable, Equatable {
         let value = try container.decode(String.self)
         
         if value.hasPrefix("#") {
-            self = .hex(value)
+            // Validate hex color format
+            let hexPattern = "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+            let hexRegex = try! NSRegularExpression(pattern: hexPattern, options: [])
+            let range = NSRange(location: 0, length: value.utf16.count)
+            
+            if hexRegex.firstMatch(in: value, options: [], range: range) != nil {
+                self = .hex(value)
+            } else {
+                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid hex color format")
+            }
         } else if let presetValue = Int(value), (1...6).contains(presetValue) {
             self = .preset(presetValue)
         } else {
@@ -149,5 +172,41 @@ public enum CanvasColor: Codable, Equatable {
             return false
         }
     }
+    
+    public var uiColor: UIColor {
+        switch self {
+        case .hex(let hexString):
+            return UIColor(hex: hexString) ?? .gray
+        case .preset(let value):
+            return UIColor(named: "Preset\(value)") ?? .gray
+        }
+    }
 }
 
+extension UIColor {
+    convenience init?(hex: String) {
+        let r, g, b, a: CGFloat
+
+        if hex.hasPrefix("#") {
+            let start = hex.index(hex.startIndex, offsetBy: 1)
+            let hexColor = String(hex[start...])
+
+            if hexColor.count == 6 {
+                let scanner = Scanner(string: hexColor)
+                var hexNumber: UInt64 = 0
+
+                if scanner.scanHexInt64(&hexNumber) {
+                    r = CGFloat((hexNumber & 0xff0000) >> 16) / 255
+                    g = CGFloat((hexNumber & 0x00ff00) >> 8) / 255
+                    b = CGFloat(hexNumber & 0x0000ff) / 255
+                    a = 1.0
+
+                    self.init(red: r, green: g, blue: b, alpha: a)
+                    return
+                }
+            }
+        }
+
+        return nil
+    }
+}

@@ -3,7 +3,7 @@ import XCTest
 
 final class JSONCanvasTests: XCTestCase {
     func testNodeCreation() {
-        let node = Node(id: "1", type: .text, x: 10, y: 20, width: 100, height: 50, color: .preset(1), text: "Hello, world!")
+        let node = CanvasNode(id: "1", type: .text, x: 10, y: 20, width: 100, height: 50, color: .preset(1), text: "Hello, world!")
         XCTAssertEqual(node.id, "1")
         XCTAssertEqual(node.type, .text)
         XCTAssertEqual(node.x, 10)
@@ -24,7 +24,7 @@ final class JSONCanvasTests: XCTestCase {
     }
     
     func testJSONCanvasCreation() {
-        let node = Node(id: "1", type: .text, x: 10, y: 20, width: 100, height: 50, text: "Hello")
+        let node = CanvasNode(id: "1", type: .text, x: 10, y: 20, width: 100, height: 50, text: "Hello")
         let edge = CanvasEdge(id: "e1", fromNode: "1", toNode: "2")
         let canvas = JSONCanvas(nodes: [node], edges: [edge])
         
@@ -101,8 +101,8 @@ final class JSONCanvasTests: XCTestCase {
     }
     
     func testJSONEncoding() throws {
-        let node1 = Node(id: "1", type: .text, x: 100, y: 200, width: 300, height: 150, color: .preset(1), text: "Hello, JSON!")
-        let node2 = Node(id: "2", type: .file, x: 500, y: 300, width: 200, height: 100, color: .hex("#00FF00"), file: "document.pdf")
+        let node1 = CanvasNode(id: "1", type: .text, x: 100, y: 200, width: 300, height: 150, color: .preset(1), text: "Hello, JSON!")
+        let node2 = CanvasNode(id: "2", type: .file, x: 500, y: 300, width: 200, height: 100, color: .hex("#00FF00"), file: "document.pdf")
         let edge = CanvasEdge(id: "e1", fromNode: "1", toNode: "2", color: .preset(3), label: "Connection")
         
         let canvas = JSONCanvas(nodes: [node1, node2], edges: [edge])
